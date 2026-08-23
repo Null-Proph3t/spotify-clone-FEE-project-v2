@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - Resonance</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+
+        <div class="mobile-top-bar">
+            <button class="menu-btn" onclick="toggleSidebar()">&#9776;</button>
+            <div class="logo">Resonance</div>
+        </div>
+
+        <aside class="sidebar" id="sidebar">
+            <button class="close-btn" onclick="toggleSidebar()">&times;</button>
+            <div class="sidebar-top">
+                <div class="logo desktop-logo">Resonance</div>
+                <ul class="nav-links main-nav">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index.html#/search">Search</a></li>
+                    <li><a href="about.html" class="active">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <ul class="nav-links bottom-links" data-sidebar-auth>
+                <!-- populated by ui.js -->
+            </ul>
+        </aside>
+
+        <main class="main-content">
+            <section class="content-section">
+                <h1>About Resonance</h1>
+                <p>Welcome to Resonance, a cutting-edge music streaming platform developed by Team No. 21.</p>
+                <p>Our mission is to unlock the potential of human creativity by giving a million creative artists the opportunity to live off their art and billions of fans the opportunity to enjoy and be inspired by it.</p>
+                <p>Whether you're looking for deep cuts for late nights, high-energy beats for the gym, or a relaxing acoustic playlist, Resonance brings your favorite music all into one place.</p>
+                <p><a href="index.html" class="btn" style="display:inline-block; margin-top: 10px;">Go to the app</a></p>
+            </section>
+        </main>
+    </div>
+
+    <script src="auth.js"></script>
+    <script src="ui.js"></script>
+    <script>
+        function toggleSidebar() {
+            document.getElementById("sidebar").classList.toggle("show");
+        }
+    </script>
+</body>
+</html>

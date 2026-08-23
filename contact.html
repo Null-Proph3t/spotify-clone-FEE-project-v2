@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Resonance</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+
+        <div class="mobile-top-bar">
+            <button class="menu-btn" onclick="toggleSidebar()">&#9776;</button>
+            <div class="logo">Resonance</div>
+        </div>
+
+        <aside class="sidebar" id="sidebar">
+            <button class="close-btn" onclick="toggleSidebar()">&times;</button>
+            <div class="sidebar-top">
+                <div class="logo desktop-logo">Resonance</div>
+                <ul class="nav-links main-nav">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index.html#/search">Search</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html" class="active">Contact</a></li>
+                </ul>
+            </div>
+            <ul class="nav-links bottom-links" data-sidebar-auth>
+                <!-- populated by ui.js -->
+            </ul>
+        </aside>
+
+        <main class="main-content">
+            <section class="content-section">
+                <h1>Get in Touch</h1>
+                <p>Have a question or feedback? We'd love to hear from you.</p>
+
+                <div class="form-success" id="form-success">Thanks — your message has been sent. We'll get back to you soon.</div>
+
+                <form id="contact-form" style="max-width: 500px; margin-top: 20px;" novalidate>
+                    <div class="form-group">
+                        <label for="name">Your Name</label>
+                        <input type="text" id="name" class="form-control" placeholder="John Doe" required>
+                        <div class="form-error" id="err-name"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" class="form-control" placeholder="john@example.com" required>
+                        <div class="form-error" id="err-email"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" class="form-control" placeholder="How can we help you?" required></textarea>
+                        <div class="form-error" id="err-message"></div>
+                    </div>
+                    <button type="submit" class="btn">Send Message</button>
+                </form>
+            </section>
+        </main>
+    </div>
+
+    <script src="auth.js"></script>
+    <script src="ui.js"></script>
+    <script>
+        function toggleSidebar() {
+            document.getElementById("sidebar").classList.toggle("show");
+        }
+
+        function validEmail(v) {
+            return /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/i.test(v.trim());
+        }
+
+        document.getElementById("contact-form").addEventListener("submit", function (e) {
+            e.preventDefault();
+            var name = document.getElementById("name");
+            var email = document.getElementById("email");
+            var message = document.getElementById("message");
+            var errName = document.getElementById("err-name");
+            var errEmail = document.getElementById("err-email");
+            var errMessage = document.getElementById("err-message");
+            var successBox = document.getElementById("form-success");
+
+            errName.textContent = "";
+            errEmail.textContent = "";
+            errMessage.textContent = "";
+            successBox.classList.remove("show");
+
+            var ok = true;
+            if (!name.value.trim()) { errName.textContent = "Please enter your name."; ok = false; }
+            if (!validEmail(email.value)) { errEmail.textContent = "Please enter a valid email address."; ok = false; }
+            if (!message.value.trim()) { errMessage.textContent = "Please enter a message."; ok = false; }
+            if (!ok) return;
+
+            // No backend exists yet — store the submission locally as a demo
+            // rather than pretending an email was actually sent.
+            try {
+                var key = "resonance_contact_submissions_v1";
+                var existing = JSON.parse(localStorage.getItem(key) || "[]");
+                existing.push({ name: name.value.trim(), email: email.value.trim(), message: message.value.trim(), sentAt: new Date().toISOString() });
+                localStorage.setItem(key, JSON.stringify(existing));
+            } catch (err) { console.warn("Resonance: could not store contact submission.", err); }
+
+            successBox.classList.add("show");
+            document.getElementById("contact-form").reset();
+            if (window.RUi) window.RUi.toast("Message sent. Thanks for reaching out!", "success");
+        });
+    </script>
+</body>
+</html>

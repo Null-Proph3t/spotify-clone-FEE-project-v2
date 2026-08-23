@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Logging Out...</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .spinner {
+      width: 40px;
+      height: 40px;
+      border: 4px solid #333;
+      border-top: 4px solid var(--theme-green);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+    @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+  </style>
+</head>
+<body>
+    <div class="spinner"></div>
+    <h2 style="color: var(--text-muted);">Logging you out safely...</h2>
+
+    <script src="auth.js"></script>
+    <script>
+        // Destroy only the session — liked songs, playlists, and history
+        // stay on this device for next time.
+        RAuth.logout();
+        setTimeout(function () {
+            window.location.href = "index.html#/home";
+        }, 1200);
+    </script>
+</body>
+</html>

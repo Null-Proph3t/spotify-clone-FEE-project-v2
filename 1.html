@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resonance Loading</title>
+  <meta http-equiv="refresh" content="3;url=index.html" />
+  <style>
+    body {
+      background-color: black;
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: Arial, sans-serif;
+    }
+    .loading {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px; 
+    }
+    .container {
+      width: 300px;
+      height: 20px;
+      border: 2px solid white;
+      overflow: hidden;
+    }
+    .square {
+      width: 0px;
+      height: 100%;
+      background-color: #1DB954; 
+      animation: loadingAnim 3s linear forwards; 
+    }
+    @keyframes loadingAnim {
+      0% { width: 0%; }
+      100% { width: 100%; }
+    }
+    .name {
+      color: white;
+      font-size: 28px;
+      font-weight: bold;
+    }
+    .load {
+      color: #b3b3b3;
+    }
+  </style>
+</head>
+<body>
+  <div class="loading">
+    <div class="container">
+      <div class="square"></div>
+    </div>
+    <div class="name">Resonance</div>
+    <div class="load">Loading...</div>
+  </div>
+</body>
+</html>
