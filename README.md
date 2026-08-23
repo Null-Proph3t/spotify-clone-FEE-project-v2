@@ -421,7 +421,9 @@ Since this is an academic/demo project, a few things are intentionally simplifie
 
 ## 👥 Contributors
 
-**Team No. 21** — 3rd Year Engineering Project
+-Pranav Mishra
+-Aditya Singh Rawat
+-Akshit Gupta
 
 ---
 
